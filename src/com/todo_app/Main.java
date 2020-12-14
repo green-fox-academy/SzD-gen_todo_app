@@ -20,7 +20,10 @@ public class Main {
             System.out.println("    -c   Complete task");
         }
         else if (args[0].equals("-l")){
-            scan(Paths.get("C:/Users/User/Documents/Greenfox/Todo/SzD-gen_todo_app/tennivalok.txt"));
+            scan(Paths.get("../tennivalok.txt")); /*C:/Users/User/Documents/Greenfox/Todo/SzD-gen_todo_app/tennivalok.txt*/
+        }
+        else {
+
         }
     }
     static void scan (Path path){
