@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         if (args.length == 0) {
             System.out.println("Command line application");
             System.out.println("=============================");
@@ -23,12 +22,14 @@ public class Main {
         else if (args[0].equals("-l")){
             scan(Paths.get("C:/Users/User/Documents/Greenfox/Todo/SzD-gen_todo_app/tennivalok.txt"));
         }
-
     }
     static void scan (Path path){
         try {
             Scanner fileScanner = new Scanner(path);
             int n = 1;
+            if (!fileScanner.hasNextLine()){
+                System.out.println("Nincs mara tennivalod! :)");
+            }
             while (fileScanner.hasNextLine()) {
                 String data = fileScanner.nextLine();
                 System.out.println(n + " " + data);
