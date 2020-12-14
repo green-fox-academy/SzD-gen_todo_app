@@ -22,17 +22,21 @@ public class Main {
         } else if (args[0].equals("-l")) {
             scan(Paths.get("../tennivalok.txt")); /*C:/Users/User/Documents/Greenfox/Todo/SzD-gen_todo_app/tennivalok.txt*/
         } else if (args[0].equals("-a")) {
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("../tennivalok.txt", true));
-                writer.write("\n");
-                for (int i = 1; i < args.length; i++) {
-                    writer.write(args[i] + " ");
+            if (args.length == 1) {
+                System.out.println("Nem lehetseges uj feladat hozzaadasa: nincs megadva a feladat!");
+            } else {
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("../tennivalok.txt", true));
+                    writer.write("\n");
+                    for (int i = 1; i < args.length; i++) {
+                        writer.write(args[i] + " ");
+                    }
+                    writer.close();
+                } catch (FileNotFoundException e) {
+                    System.out.println("File not found");
+                } catch (IOException e) {
+                    System.out.println("Bad input");
                 }
-                writer.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found");
-            } catch (IOException e) {
-                System.out.println("Bad input");
             }
         }
     }
