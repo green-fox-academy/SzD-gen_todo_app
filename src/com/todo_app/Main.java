@@ -1,7 +1,8 @@
 package com.todo_app;
 
-import java.io.File;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,19 +19,29 @@ public class Main {
             System.out.println("    -a   Add new task");
             System.out.println("    -r   Remove a task");
             System.out.println("    -c   Complete task");
-        }
-        else if (args[0].equals("-l")){
+        } else if (args[0].equals("-l")) {
             scan(Paths.get("../tennivalok.txt")); /*C:/Users/User/Documents/Greenfox/Todo/SzD-gen_todo_app/tennivalok.txt*/
-        }
-        else {
-
+        } else if (args[0].equals("-a")) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("../tennivalok.txt", true));
+                writer.write("\n");
+                for (int i = 1; i < args.length; i++) {
+                    writer.write(args[i] + " ");
+                }
+                writer.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            } catch (IOException e) {
+                System.out.println("Bad input");
+            }
         }
     }
-    static void scan (Path path){
+
+    static void scan(Path path) {
         try {
             Scanner fileScanner = new Scanner(path);
             int n = 1;
-            if (!fileScanner.hasNextLine()){
+            if (!fileScanner.hasNextLine()) {
                 System.out.println("Nincs mara tennivalod! :)");
             }
             while (fileScanner.hasNextLine()) {
@@ -38,11 +49,9 @@ public class Main {
                 System.out.println(n + " " + data);
                 n++;
             }
-        }
-        catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Bad input");
         }
     }
